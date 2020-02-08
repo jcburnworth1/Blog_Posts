@@ -44,8 +44,6 @@ class Blog(object):
             'id': self.id
         }
 
-    ## Need to review and see why this isn't working
-    ## Guessing this is due to mongo collections
     @classmethod
     def from_mongo(cls, id):
         blog_data = Database.find_one(collection='blogs',
