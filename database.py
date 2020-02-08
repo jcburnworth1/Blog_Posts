@@ -1,4 +1,4 @@
-## Import libratries
+## Import libraries
 import pymongo
 
 ## Database Class
@@ -8,7 +8,7 @@ class Database(object):
     DATABASE = None
 
     @staticmethod
-    def intialize():
+    def initialize():
         client = pymongo.MongoClient(Database.URI)
         Database.DATABASE = client['fullstack']
 

@@ -1,13 +1,8 @@
 ## Import libraries
 from database import Database
-from models.post import Post
+from menu import Menu
 
-## Initilize Database
-Database.intialize()
-
-## Create post object
-post = Post('Title Post','Content Post','Author Post')
-
-print(post.title)
-print(post.author)
-print(post.content)
+## Initialize Database
+Database.initialize()
+menu = Menu()
+menu.run_menu()
