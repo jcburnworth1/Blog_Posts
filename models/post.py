@@ -6,6 +6,7 @@ import datetime
 ## Post Class
 ## Used to place blog posts into our mongo instance
 class Post(object):
+
     def __init__(self, blog_id, title, content, author, date=datetime.datetime.utcnow(), id=None):
         self.blog_id = blog_id
         self.title = title
@@ -13,7 +14,6 @@ class Post(object):
         self.author = author
         self.created_date = date
         self.id = uuid.uuid4().hex if id is None else id
-
 
     def save_to_mongo(self):
         Database.insert(collection='posts',

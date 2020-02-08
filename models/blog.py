@@ -6,6 +6,7 @@ from models.post import Post
 
 ## Blog Class
 class Blog(object):
+
     def __init__(self, author, title, description, id=None):
         self.author = author
         self.title = title
@@ -27,6 +28,7 @@ class Blog(object):
                     content=content,
                     author=self.author,
                     date=date)
+
         post.save_to_mongo()
 
     def get_posts(self):

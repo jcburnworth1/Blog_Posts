@@ -4,14 +4,17 @@ from models.blog import Blog
 
 ## Menu Class
 class Menu(object):
+
     def __init__(self):
         self.user = input("Enter your author name: ")
         self.user_blog = None
+
         if self._user_has_account():
             print("Welcome back {0}".format(self.user))
         else:
             self._prompt_user_for_account()
 
+    ## Private method to check user account
     def _user_has_account(self):
         blog = Database.find_one('blogs', {'author': self.user})
 
@@ -21,6 +24,7 @@ class Menu(object):
         else:
             return False
 
+    ## Private method to add a new user
     def _prompt_user_for_account(self):
         title = input("Enter Blog Title: ")
         description = input("Enter Blog Description: ")
@@ -30,15 +34,13 @@ class Menu(object):
         blog.save_to_mongo()
         self.user_blog = blog
 
+    ## Will launch the menu to read or write blog posts
     def run_menu(self):
         read_or_write = input("Do you want to read (R) or write (W) blogs?")
+
         if read_or_write == "R":
-            ## List blogs
-            self._list_blogs()
-
-            ## Allow user to pick one
-            self._view_blogs()
-
+            self._list_blogs() ## List blogs
+            # self._view_blogs() ## Allow user to pick one
         elif read_or_write == "W":
             self.user_blog.new_post()
         else:
