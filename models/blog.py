@@ -14,6 +14,7 @@ class Blog(object):
         self.id = uuid.uuid4().hex if id is None else id
 
     def new_post(self):
+        """Allows user to create a new post with title and content"""
         title = input("Enter Post Title: ")
         content = input("Enter Post Content: ")
         date = input("Enter Post Date (DDMMYYYYY), or leave blank for today:")
@@ -32,13 +33,16 @@ class Blog(object):
         post.save_to_mongo()
 
     def get_posts(self):
+        """Retrieve posts associated with the given blog"""
         return Post.from_blog(self.id)
 
     def save_to_mongo(self):
+        """Save blog details to mongo blogs collection"""
         Database.insert(collection='blogs',
                         data=self.json())
 
     def json(self):
+        """JSON model for our application to mongo"""
         return {
             'author': self.author,
             'title': self.title,
@@ -48,6 +52,7 @@ class Blog(object):
 
     @classmethod
     def from_mongo(cls, id):
+        """Retrieve our data from mongo based on supplied blog id"""
         blog_data = Database.find_one(collection='blogs',
                                       query={'id': id})
 

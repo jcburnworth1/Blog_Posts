@@ -16,10 +16,12 @@ class Post(object):
         self.id = uuid.uuid4().hex if id is None else id
 
     def save_to_mongo(self):
+        """Save new post to mongo in collection posts"""
         Database.insert(collection='posts',
                         data=self.json())
 
     def json(self):
+        """JSON model for our application to mongo"""
         return {
             'id': self.id,
             'blog_id': self.blog_id,
@@ -31,6 +33,7 @@ class Post(object):
 
     @classmethod
     def from_mongo(cls, id):
+        """Retrieve our data from mongo based on supplied post id"""
         post_data = Database.find_one(collection='posts', query={'id': id})
 
         return cls(blog_id=post_data['blog_id'],
@@ -42,4 +45,5 @@ class Post(object):
 
     @staticmethod
     def from_blog(id):
+        """Retrieve our data from mongo based on supplied post id"""
         return [post for post in Database.find(collection='posts', query={'blog_id':id})]
