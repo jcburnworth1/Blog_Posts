@@ -43,7 +43,7 @@ class Menu(object):
 
         if read_or_write == "R":
             self._list_blogs() ## List blogs
-            # self._view_blogs() ## Allow user to pick one
+            self._view_blogs() ## Allow user to pick one
         elif read_or_write == "W":
             self.user_blog.new_post()
         else:
