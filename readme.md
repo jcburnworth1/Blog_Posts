@@ -1,1 +1,1 @@
-Repo for Udemy Web Application: Blog Posts
+Repo for Udemy Terminal Application: Blog Posts
